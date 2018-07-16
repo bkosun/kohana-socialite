@@ -2,6 +2,9 @@
 
 class Kohana_Socialite {
 
+    /** The providers markers */
+    const PROVIDER_FACEBOOK = 'facebook';
+
     /**
      * Config.
      *
