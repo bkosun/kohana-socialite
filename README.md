@@ -56,6 +56,7 @@ class Controller_Auth extends Controller
 ## Providers
 - Facebook
 - Instagram
+- Vkontakte
 
 ## Acknowledgements
 The author drew extensive inspiration from the [Laravel Socialite](https://github.com/laravel/socialite/) package and its related documentation.

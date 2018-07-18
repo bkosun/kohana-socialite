@@ -37,5 +37,21 @@ return array(
             'redirect_url' => '',
             'scopes' => array(),
         ),
+        'vkontakte' => array(
+            /**
+             * Vkontakte provider settings
+             *
+             * string   client_id        Application ID
+             * string   client_secret    Secret key applications
+             * string   redirect_url     Default redirect URL
+             * array    scopes           Scopes
+             *
+             * @link https://vk.com/apps?act=manage
+             */
+            'client_id' => '',
+            'client_secret' => '',
+            'redirect_url' => '',
+            'scopes' => array(),
+        ),
     ),
 );
