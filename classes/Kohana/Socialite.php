@@ -6,6 +6,7 @@ class Kohana_Socialite {
     const PROVIDER_FACEBOOK = 'facebook';
     const PROVIDER_INSTAGRAM = 'instagram';
     const PROVIDER_MAIL = 'mail';
+    const PROVIDER_ODNOKLASSNIKI = 'odnoklassniki';
     const PROVIDER_VKONTAKTE = 'vkontakte';
 
     /**

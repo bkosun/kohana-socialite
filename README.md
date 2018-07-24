@@ -57,6 +57,7 @@ class Controller_Auth extends Controller
 - Facebook
 - Instagram
 - Mail
+- Odnoklassniki
 - Vkontakte
 
 ## Acknowledgements
