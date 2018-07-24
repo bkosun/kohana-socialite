@@ -37,6 +37,22 @@ return array(
             'redirect_url' => '',
             'scopes' => array(),
         ),
+        'mail' => array(
+            /**
+             * Mail provider settings
+             *
+             * string   client_id        Application ID
+             * string   client_secret    Secret key applications
+             * string   redirect_url     Default redirect URL
+             * array    scopes           Scopes
+             *
+             * @link https://api.mail.ru/sites/my/
+             */
+            'client_id' => '',
+            'client_secret' => '',
+            'redirect_url' => '',
+            'scopes' => array(),
+        ),
         'vkontakte' => array(
             /**
              * Vkontakte provider settings
