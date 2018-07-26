@@ -21,18 +21,27 @@ Kohana::modules(array(
 
 class Controller_Auth extends Controller
 {
-    public function action_index()
+    public function action_login()
     {
-        $driver = '{%YOUR_DRIVER%}';
-        $redirect_uri = Route::url('auth', array('action' => 'index',));
-        
         $socialite = Socialite::factory()
-            ->driver($driver)
-            ->redirect_url($redirect_uri);
+            ->driver('Facebook')
+            ->redirect_url(Route::url('auth', array('action' => 'callback',)));
+
+        $socialite->redirect();
+    }
+
+    public function action_callback()
+    {
+        $socialite = Socialite::factory()
+            ->driver('Facebook')
+            ->redirect_url(Route::url('auth', array('action' => 'callback',)));
         
-        try {
+        try 
+        {
             $user = $socialite->user();
-        } catch (Socialite_Exception $e) {
+        } 
+        catch (Socialite_Exception $e) 
+        {
             throw new Kohana_Exception($e->getMessage());
         }
         
