@@ -157,9 +157,17 @@ class Kohana_Socialite_OAuth_Two_Provider_Instagram extends Kohana_Socialite_OAu
      */
     protected function map_user_to_object(array $user)
     {
-        $names = explode(' ', Arr::get($user, 'full_name'));
+        $names = explode(' ', Arr::get($user, 'full_name'), 2);
 
-        list($first_name, $last_name) = $names;
+        if (count($names) > 1)
+        {
+            list($first_name, $last_name) = $names;
+        }
+        else
+        {
+            $first_name = Arr::get($user, 'full_name');
+            $last_name = NULL;
+        }
 
         $profile = 'https://www.instagram.com/'.Arr::get($user, 'username');
 
