@@ -142,6 +142,17 @@ class Kohana_Socialite_OAuth_Two_Provider_Odnoklassniki extends Kohana_Socialite
      */
     protected function map_user_to_object(array $user)
     {
+        $birthday = NULL;
+
+        if (Arr::get($user, 'birthday'))
+        {
+            if (preg_match('/(\d{4})\-(\d{2})\-(\d{2})/', Arr::get($user, 'birthday'), $matches))
+            {
+                array_shift($matches);
+                list($birthday['year'], $birthday['month'], $birthday['day']) = $matches;
+            }
+        }
+
         switch (Arr::get($user, 'gender')){
             case 'female':
                 $gender = 'female';
@@ -163,7 +174,7 @@ class Kohana_Socialite_OAuth_Two_Provider_Odnoklassniki extends Kohana_Socialite
                 'first_name' => Arr::get($user, 'first_name'),
                 'last_name' => Arr::get($user, 'last_name'),
                 'surname' => NULL,
-                'birthday' => Arr::get($user, 'birthday'),
+                'birthday' => $birthday,
                 'gender' => $gender,
                 'photo' => Arr::get($user, 'pic_full'),
                 'email' => Arr::get($user, 'email'),

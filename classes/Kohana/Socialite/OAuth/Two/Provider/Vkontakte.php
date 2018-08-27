@@ -100,6 +100,25 @@ class Kohana_Socialite_OAuth_Two_Provider_Vkontakte extends Kohana_Socialite_OAu
      */
     protected function map_user_to_object(array $user)
     {
+        $birthday = NULL;
+
+        if (Arr::get($user, 'bdate'))
+        {
+            if (preg_match('/(\d{1,2})\.(\d{1,2})\.(\d{4})/', Arr::get($user, 'bdate'), $matches))
+            {
+                array_shift($matches);
+                list($birthday['day'], $birthday['month'], $birthday['year']) = $matches;
+            }
+            elseif (preg_match('/(\d{1,2})\.(\d{1,2})/', Arr::get($user, 'bdate'), $matches))
+            {
+                array_shift($matches);
+                list($birthday['day'], $birthday['month']) = $matches;
+            }
+
+            str_pad($birthday['day'], 2, '0', STR_PAD_LEFT);
+            str_pad($birthday['month'], 2, '0', STR_PAD_LEFT);
+        }
+
         switch (Arr::get($user, 'sex')){
             case '1':
                 $gender = 'female';
@@ -121,7 +140,7 @@ class Kohana_Socialite_OAuth_Two_Provider_Vkontakte extends Kohana_Socialite_OAu
                 'first_name' => Arr::get($user, 'first_name'),
                 'last_name' => Arr::get($user, 'last_name'),
                 'surname' => Arr::get($user, 'nickname'),
-                'birthday' => Arr::get($user, 'bdate'),
+                'birthday' => $birthday,
                 'gender' => $gender,
                 'photo' => Arr::get($user, 'photo_max_orig'),
                 'email' => Arr::get($user, 'email'),

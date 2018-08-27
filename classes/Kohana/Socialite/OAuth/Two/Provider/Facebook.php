@@ -123,6 +123,27 @@ class Kohana_Socialite_OAuth_Two_Provider_Facebook extends Kohana_Socialite_OAut
      */
     protected function map_user_to_object(array $user)
     {
+        $birthday = NULL;
+
+        if (Arr::get($user, 'birthday'))
+        {
+            if (preg_match('/(\d{2})\.(\d{2})\.(\d{4})/', Arr::get($user, 'birthday'), $matches))
+            {
+                array_shift($matches);
+                list($birthday['month'], $birthday['day'], $birthday['year']) = $matches;
+            }
+            elseif (preg_match('/(\d{2})\.(\d{2})/', Arr::get($user, 'birthday'), $matches))
+            {
+                array_shift($matches);
+                list($birthday['month'], $birthday['day']) = $matches;
+            }
+            elseif (preg_match('/(\d{4})/', Arr::get($user, 'birthday'), $matches))
+            {
+                array_shift($matches);
+                list($birthday['year']) = $matches;
+            }
+        }
+
         // http://stackoverflow.com/questions/2821061/facebook-api-how-do-i-get-a-facebook-users-profile-image-through-the-facebook
         $photo = 'https://graph.facebook.com/v2.8/'.Arr::get($user, 'id').'/picture?type=large';
 
@@ -134,7 +155,7 @@ class Kohana_Socialite_OAuth_Two_Provider_Facebook extends Kohana_Socialite_OAut
                 'first_name' => Arr::get($user, 'first_name'),
                 'last_name' => Arr::get($user, 'last_name'),
                 'surname' => Arr::get($user, 'middle_name'),
-                'birthday' => Arr::get($user, 'birthday'),
+                'birthday' => $birthday,
                 'gender' => $gender,
                 'photo' => $photo,
                 'email' => Arr::get($user, 'email'),

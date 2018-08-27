@@ -40,7 +40,7 @@ abstract class Kohana_Socialite_OAuth_User implements Kohana_Socialite_User
     /**
      * The user's birthday.
      *
-     * @var string
+     * @var null|array
      */
     public $birthday;
 
@@ -146,7 +146,7 @@ abstract class Kohana_Socialite_OAuth_User implements Kohana_Socialite_User
     /**
      * Get the birthday of the user.
      *
-     * @return string
+     * @return null|array
      */
     public function get_birthday()
     {

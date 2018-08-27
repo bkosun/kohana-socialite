@@ -31,9 +31,9 @@ interface Kohana_Socialite_User
     public function get_last_name();
 
     /**
-     * Get the birthday (UNIX TIME) of the user.
+     * Get the birthday of the user.
      *
-     * @return string
+     * @return null|array
      */
     public function get_birthday();
 

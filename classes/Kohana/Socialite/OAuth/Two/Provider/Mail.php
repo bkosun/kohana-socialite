@@ -164,6 +164,17 @@ class Kohana_Socialite_OAuth_Two_Provider_Mail extends Kohana_Socialite_OAuth_Tw
      */
     protected function map_user_to_object(array $user)
     {
+        $birthday = NULL;
+
+        if (Arr::get($user, 'birthday'))
+        {
+            if (preg_match('/(\d{2})\.(\d{2})\.(\d{4})/', Arr::get($user, 'birthday'), $matches))
+            {
+                array_shift($matches);
+                list($birthday['day'], $birthday['month'], $birthday['year']) = $matches;
+            }
+        }
+
         switch (Arr::get($user, 'sex')){
             case '0':
                 $gender = 'male';
@@ -183,7 +194,7 @@ class Kohana_Socialite_OAuth_Two_Provider_Mail extends Kohana_Socialite_OAuth_Tw
                 'first_name' => Arr::get($user, 'first_name'),
                 'last_name' => Arr::get($user, 'last_name'),
                 'surname' => NULL,
-                'birthday' => Arr::get($user, 'birthday'),
+                'birthday' => $birthday,
                 'gender' => $gender,
                 'photo' => Arr::get($user, 'pic_190'),
                 'email' => Arr::get($user, 'email'),
