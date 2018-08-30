@@ -115,8 +115,8 @@ class Kohana_Socialite_OAuth_Two_Provider_Vkontakte extends Kohana_Socialite_OAu
                 list($birthday['day'], $birthday['month']) = $matches;
             }
 
-            str_pad($birthday['day'], 2, '0', STR_PAD_LEFT);
-            str_pad($birthday['month'], 2, '0', STR_PAD_LEFT);
+            $birthday['day'] = str_pad($birthday['day'], 2, '0', STR_PAD_LEFT);
+            $birthday['month'] = str_pad($birthday['month'], 2, '0', STR_PAD_LEFT);
         }
 
         switch (Arr::get($user, 'sex')){
