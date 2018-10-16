@@ -30,7 +30,7 @@ return array(
              * string   redirect_url     Default redirect URL
              * array    scopes           Scopes
              *
-             * @link https://www.instagram.com/developer/clients/
+             * @link https://www.instagram.com/developer/clients/manage/
              */
             'client_id' => '',
             'client_secret' => '',
