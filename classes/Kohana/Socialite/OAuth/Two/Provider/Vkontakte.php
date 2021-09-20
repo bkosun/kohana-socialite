@@ -62,7 +62,6 @@ class Kohana_Socialite_OAuth_Two_Provider_Vkontakte extends Kohana_Socialite_OAu
             'user_ids' => $access_token['user_id'],
             'fields' => implode(',', $this->_fields),
             'lang' => $this->_api_lang,
-            'https' => TRUE,
             'v' => '5.62',
         );
         
